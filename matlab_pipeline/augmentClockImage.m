@@ -13,7 +13,7 @@ scale = aug.scale(1) + rand * (aug.scale(2) - aug.scale(1));
 tx = (rand * 2 - 1) * aug.translate * size(img,2);
 ty = (rand * 2 - 1) * aug.translate * size(img,1);
 shear = deg2rad((rand * 2 - 1) * aug.shear);
-A = [scale tan(shear) 0; 0 scale 0; tx ty 1];
+A = [scale tan(shear) tx; 0 scale ty; 0 0 1];
 tformA = affine2d(A);
 img = imwarp(img, tformA, 'OutputView', imref2d(size(img(:,:,1))), 'FillValues', rand(1,3));
 

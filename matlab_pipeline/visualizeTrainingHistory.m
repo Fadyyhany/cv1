@@ -12,13 +12,15 @@ nexttile;
 plotField(trainInfo.stage1, 'TrainingLoss', 0, 'b-');
 hold on;
 plotField(trainInfo.stage1, 'ValidationLoss', 0, 'r-');
+legendEntries = {'Train S1','Val S1'};
 if ~isempty(trainInfo.stage2)
     e1 = numel(trainInfo.stage1.TrainingLoss);
     plotField(trainInfo.stage2, 'TrainingLoss', e1, 'b--');
     plotField(trainInfo.stage2, 'ValidationLoss', e1, 'r--');
+    legendEntries = [legendEntries, {'Train S2','Val S2'}]; %#ok<AGROW>
 end
 grid on;
-xlabel('Iteration'); ylabel('Loss'); title('Training/Validation Loss'); legend('Train S1','Val S1','Train S2','Val S2');
+xlabel('Iteration'); ylabel('Loss'); title('Training/Validation Loss'); legend(legendEntries);
 
 nexttile;
 plotField(trainInfo.stage1, 'BaseLearnRate', 0, 'k-');
