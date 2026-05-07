@@ -19,16 +19,16 @@ This repository contains a fully rewritten, modular MATLAB pipeline for analog c
 
 ## Directory structure
 
-- `/home/runner/work/cv1/cv1/matlab_pipeline/run_clock_pipeline.m` - main entry point
-- `/home/runner/work/cv1/cv1/matlab_pipeline/defaultClockConfig.m` - configurable paths/hyperparameters
-- `/home/runner/work/cv1/cv1/matlab_pipeline/loadClockDataset.m` - dataset + label-to-angle conversion
-- `/home/runner/work/cv1/cv1/matlab_pipeline/augmentClockImage.m` - heavy augmentation policy
-- `/home/runner/work/cv1/cv1/matlab_pipeline/createClockRegressionModel.m` - backbone + multi-output head
-- `/home/runner/work/cv1/cv1/matlab_pipeline/trainClockRegressor.m` - staged training loop
-- `/home/runner/work/cv1/cv1/matlab_pipeline/computeClockMetrics.m` - MAE/angular/time metrics
-- `/home/runner/work/cv1/cv1/matlab_pipeline/evaluateClockModel.m` - seen/unseen evaluation + plots
-- `/home/runner/work/cv1/cv1/matlab_pipeline/visualizeTrainingHistory.m` - training/validation/lr plots
-- `/home/runner/work/cv1/cv1/matlab_pipeline/predictClockTime.m` - inference utility
+- `matlab_pipeline/run_clock_pipeline.m` - main entry point
+- `matlab_pipeline/defaultClockConfig.m` - configurable paths/hyperparameters
+- `matlab_pipeline/loadClockDataset.m` - dataset + label-to-angle conversion
+- `matlab_pipeline/augmentClockImage.m` - heavy augmentation policy
+- `matlab_pipeline/createClockRegressionModel.m` - backbone + multi-output head
+- `matlab_pipeline/trainClockRegressor.m` - staged training loop
+- `matlab_pipeline/computeClockMetrics.m` - MAE/angular/time metrics
+- `matlab_pipeline/evaluateClockModel.m` - seen/unseen evaluation + plots
+- `matlab_pipeline/visualizeTrainingHistory.m` - training/validation/lr plots
+- `matlab_pipeline/predictClockTime.m` - inference utility
 
 ## MATLAB version
 
@@ -36,18 +36,24 @@ Target: **MATLAB R2025b+** (or closest compatible version with Deep Learning Too
 
 ## Configure datasets
 
-Edit paths in `/home/runner/work/cv1/cv1/matlab_pipeline/defaultClockConfig.m`:
+Edit paths in `matlab_pipeline/defaultClockConfig.m`:
 
 - Synthetic dataset image + CSV label path
 - Real dataset image + CSV label path
 - Optional seen/unseen evaluation sets (`cfg.evaluation.seenSets`, `cfg.evaluation.unseenSets`)
+
+Example (your local machine paths):
+- Synthetic images: `E:\2nd Semester\CV\IDEA_CV\50.000_Coloured_Real\images\images`
+- Synthetic labels: `E:\2nd Semester\CV\IDEA_CV\50.000_Coloured_Real\label.csv`
+- Real images: `E:\2nd Semester\CV\IDEA_CV\103_Real_perfect\Images\Images`
+- Real labels: `E:\2nd Semester\CV\IDEA_CV\103_Real_perfect\label.csv`
 
 Expected labels: `hour`, `minute`, and optional `second` columns (or first numeric columns fallback).
 
 ## Run training
 
 ```matlab
-cd('/home/runner/work/cv1/cv1/matlab_pipeline');
+cd('matlab_pipeline');
 artifacts = run_clock_pipeline();
 ```
 
@@ -70,10 +76,10 @@ The pipeline automatically evaluates:
 
 Saved artifacts are written under:
 
-- `/home/runner/work/cv1/cv1/artifacts/models`
-- `/home/runner/work/cv1/cv1/artifacts/figures`
-- `/home/runner/work/cv1/cv1/artifacts/checkpoints`
-- `/home/runner/work/cv1/cv1/artifacts/evaluation_summary_*.csv`
+- `artifacts/models`
+- `artifacts/figures`
+- `artifacts/checkpoints`
+- `artifacts/evaluation_summary_*.csv`
 
 ## Design recommendations
 

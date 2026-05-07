@@ -5,10 +5,11 @@ projectRoot = fileparts(fileparts(mfilename('fullpath')));
 
 cfg.randomSeed = 42;
 
-cfg.dataset.syntheticImages = 'E:\\2nd Semester\\CV\\IDEA_CV\\50.000_Coloured_Real\\images\\images';
-cfg.dataset.syntheticLabels = 'E:\\2nd Semester\\CV\\IDEA_CV\\50.000_Coloured_Real\\label.csv';
-cfg.dataset.realImages      = 'E:\\2nd Semester\\CV\\IDEA_CV\\103_Real_perfect\\Images\\Images';
-cfg.dataset.realLabels      = 'E:\\2nd Semester\\CV\\IDEA_CV\\103_Real_perfect\\label.csv';
+% Configure these paths locally to your existing datasets.
+cfg.dataset.syntheticImages = fullfile(projectRoot, 'data', 'synthetic', 'images');
+cfg.dataset.syntheticLabels = fullfile(projectRoot, 'data', 'synthetic', 'label.csv');
+cfg.dataset.realImages      = fullfile(projectRoot, 'data', 'real', 'images');
+cfg.dataset.realLabels      = fullfile(projectRoot, 'data', 'real', 'label.csv');
 
 cfg.model.inputSize = [224 224 3];
 cfg.model.backbone = 'resnet50';
